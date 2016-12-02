@@ -1,5 +1,6 @@
 package com.ssru.toshihiro.mymonitor;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -63,12 +64,17 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(s);
             try {
                 Log.d("01/12/59 ==> ", "SucessOnPost"+ s);
-                JSONArray jsonArray = new JSONArray(s);
+                final JSONArray jsonArray = new JSONArray(s);
 
                 final String[] iconString = new String[jsonArray.length()];
                 final String[] titleString = new String[jsonArray.length()];
                 final String[] priceString = new String[jsonArray.length()];
                 final String[] brandString = new String[jsonArray.length()];
+                final String[] sizeStrings = new String[jsonArray.length()];
+                final String[] curveStrings = new String[jsonArray.length()];
+                final String[] typeStrings = new String[jsonArray.length()];
+                final String[] detailStrings = new String[jsonArray.length()];
+
 
                 for (int i = 0 ; i < jsonArray.length() ; i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -76,6 +82,10 @@ public class MainActivity extends AppCompatActivity {
                     titleString[i] = jsonObject.getString("product_name");
                     priceString[i] = jsonObject.getString("price");
                     brandString[i] = jsonObject.getString("brand_name");
+                    sizeStrings[i] = jsonObject.getString("size");
+                    curveStrings[i] = jsonObject.getString("curve");
+                    typeStrings[i] = jsonObject.getString("type_name");
+                    detailStrings[i] = jsonObject.getString("product_detail");
 
                 }
                 MyAdapter myAdapter = new MyAdapter(MainActivity.this, titleString, priceString, iconString);
@@ -84,7 +94,17 @@ public class MainActivity extends AppCompatActivity {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        Toast.makeText(MainActivity.this, brandString[i] + " ", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity.this, MonitorDetail.class);
+                        intent.putExtra("img", iconString[i]);
+                        intent.putExtra("title", titleString[i]);
+                        intent.putExtra("price", priceString[i]);
+                        intent.putExtra("brand", brandString[i]);
+                        intent.putExtra("size", sizeStrings[i]);
+                        intent.putExtra("curve", curveStrings[i]);
+                        intent.putExtra("type", typeStrings[i]);
+                        intent.putExtra("detail", detailStrings[i]);
+                        startActivity(intent);
+
                     }
                 });
 
