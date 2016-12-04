@@ -1,6 +1,7 @@
 package com.ssru.toshihiro.mymonitor;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -25,9 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         bindWidGet();
-
         SynJson synJson = new SynJson();
         synJson.execute();
 
@@ -90,10 +89,14 @@ public class MainActivity extends AppCompatActivity {
                 }
                 MyAdapter myAdapter = new MyAdapter(MainActivity.this, titleString, priceString, iconString);
                 listView.setAdapter(myAdapter);
+                MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.sao_welcome);
+                mediaPlayer.start();
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        MediaPlayer mp = MediaPlayer.create(MainActivity.this, R.raw.effect_btn_shut);
+                        mp.start();
                         Intent intent = new Intent(MainActivity.this, MonitorDetail.class);
                         intent.putExtra("img", iconString[i]);
                         intent.putExtra("title", titleString[i]);

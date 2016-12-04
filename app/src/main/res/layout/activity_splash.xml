@@ -7,25 +7,38 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.ssru.toshihiro.mymonitor.Splash">
+    tools:context="com.ssru.toshihiro.mymonitor.Splash"
+    android:background="@drawable/wall12">
 
     <ImageView
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:src="@drawable/ssru_new"
-        android:id="@+id/imageView" />
+        android:id="@+id/imageView"
+        android:layout_above="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="37dp"
+        android:background="#50ffffff" />
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:id="@+id/imageView2"
+        android:src="@drawable/logo"
+        android:layout_marginBottom="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="#50ffffff" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Monitor"
+        android:text="สนับสนุนโดย"
         android:id="@+id/textView"
-        android:layout_below="@+id/imageView"
+        android:layout_above="@+id/imageView2"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
         android:textSize="20sp"
-        android:textColor="#0000ff" />
+        android:textColor="@color/text"
+        android:background="#50000000" />
 
 </RelativeLayout>

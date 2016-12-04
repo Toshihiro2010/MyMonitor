@@ -51,7 +51,8 @@ public class MyAdapter extends BaseAdapter {
         txtTitle.setText(strTilte[i]);
 
         TextView txtPrice = (TextView) view1.findViewById(R.id.tvPrice);
-        txtPrice.setText(strPrice[i]);
+        Float priceFloat = Float.parseFloat(strPrice[i]);
+        txtPrice.setText(priceFloat + " บาท");
 
         ImageView iconImage = (ImageView) view1.findViewById(R.id.tvIcon);
         Picasso.with(context).load(strIcon[i]).resize(100, 100).into(iconImage);
